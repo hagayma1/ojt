@@ -22,6 +22,7 @@ export class TaskComponent implements OnInit {
   }
 
   onUpdateTask():void {
-    this.updateTask.emit(this.task, this.checkbox.nativeElement.checked);
+    this.task.checked = this.checkbox.nativeElement.checked;
+    this.updateTask.emit(this.task);
   }
 }
