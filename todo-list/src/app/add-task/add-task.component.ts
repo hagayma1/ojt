@@ -6,14 +6,14 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./add-task.component.css']
 })
 export class AddTaskComponent implements OnInit {
-  @Output() addTask = new EventEmitter<string>();
+  @Output() addTask = new EventEmitter<{text:string, checked:boolean}>();
   constructor() { }
 
   ngOnInit(): void {
   }
 
   onAddTask(event): void {
-    this.addTask.emit(event.value);
+    this.addTask.emit({text:event.value, checked:false});
     event.value="";
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-task',
@@ -6,14 +6,22 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./task.component.css']
 })
 export class TaskComponent implements OnInit {
-  @Input() task; 
+  @ViewChild('checkbox') checkbox:ElementRef;
+  @Input() task:{text:string, checked:boolean}; 
+  @Output() deleteTask = new EventEmitter<{text:string,checked:boolean}>();
+  @Output() updateTask = new EventEmitter<{text:string,checked:boolean}>();
   constructor() {
   }
 
-  ngOnInit(task:string): void {
-    console.log(this.task);
+  ngAfterViewInit(): void {
+    this.checkbox.nativeElement.checked=this.task.checked;
   }
 
+  onDeleteTask():void {
+    this.deleteTask.emit(this.task);
+  }
 
-
+  onUpdateTask():void {
+    this.updateTask.emit(this.task, this.checkbox.nativeElement.checked);
+  }
 }

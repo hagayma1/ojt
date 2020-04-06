@@ -7,9 +7,21 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'todo-list';
-  tasks = ["a", "b", "c"];
+  tasks = [{text:"a", checked:false}, {text:"b", checked:false}, {text:"c", checked:false}];
   
-  onTaskAdded(data:string){
+  onTaskAdded(data:{text:string,checked:boolean}){
     this.tasks.push(data);
+    backup();
+  }
+
+  onUpdateTask(data:{text:string,checked:boolean}){
+    this.tasks.find(item => item.text === data.text).checked = data.checked;
+    backup();
+  }
+
+  onDeleteTask(data:{text:string,checked:boolean}){
+    let indexToDelete = this.tasks.indexOf(data);
+    this.tasks.splice(indexToDelete,1);
+    backup();
   }
 }
