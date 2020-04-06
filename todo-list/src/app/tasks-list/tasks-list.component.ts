@@ -9,7 +9,10 @@ export class TasksListComponent implements OnInit {
   @Input() tasks;
   @Output() deleteTask = new EventEmitter<{text:string,checked:boolean}>();
   @Output() updateTask = new EventEmitter<{text:string,checked:boolean}>();
+  
   constructor() { }
+
+  ngOnInit() {}
 
   onUpdateTask(data: {text:string,checked:boolean}):void {
     this.updateTask.emit(data);

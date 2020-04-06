@@ -10,7 +10,12 @@ export class TaskComponent implements OnInit {
   @Input() task:{text:string, checked:boolean}; 
   @Output() deleteTask = new EventEmitter<{text:string,checked:boolean}>();
   @Output() updateTask = new EventEmitter<{text:string,checked:boolean}>();
+  
   constructor() {
+  }
+
+  ngOnInit() {
+    
   }
 
   ngAfterViewInit(): void {
