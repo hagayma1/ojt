@@ -129,8 +129,8 @@
   <div class="card-container">
     
   </div>
-  <app-tasks-list></app-tasks-list>
-  <app-add-task></app-add-task>
+  <app-tasks-list [tasks]="tasks"></app-tasks-list>
+  <app-add-task (addTask)="onTaskAdded($event)"></app-add-task>
 
   <!-- Footer -->
   <footer>

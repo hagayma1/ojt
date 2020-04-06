@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'todo-list';
+  tasks = ["a", "b", "c"];
+  
+  onTaskAdded(data:string){
+    this.tasks.push(data);
+  }
 }
