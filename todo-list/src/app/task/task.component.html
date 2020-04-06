@@ -1,5 +1,6 @@
 <div class="card card-container">
-    <input type="checkbox" (change)="onUpdateTask()" #checkbox/>
-    <span #textspan>{{task.text}}</span>
-    <input type="button" value="delete" (click)="onDeleteTask()"/>
+  <input type="checkbox" (change)="onUpdateTask()" #checkbox />
+  <span #textspan>{{ task.text }}</span>
+  <!-- CR: "#textspan" is unnecessary -->
+  <input type="button" value="delete" (click)="onDeleteTask()" />
 </div>
