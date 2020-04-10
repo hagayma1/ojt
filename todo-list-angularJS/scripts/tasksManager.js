@@ -1,7 +1,7 @@
 class TasksManager {
     constructor(backupManager) {
         this.backupManager = backupManager;
-        this.tasks = backupManager.restore(TASKS_BACKUP_KEY);
+        this.tasks = this.backupManager.restore(TASKS_BACKUP_KEY);
         if (this.tasks == null) {
             this.tasks = [];
         }

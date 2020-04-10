@@ -8,7 +8,10 @@
     <script src="../scripts/angular.min.js"></script>
     <script src="../scripts/backupManager.js"></script>
     <script src="../scripts/tasksManager.js"></script>
-    <script src="../scripts/mainController.js"></script>
+    <script src="../scripts/controllers/mainController.js"></script>
+    <script src="../scripts/controllers/searchController.js"></script>
+    <script src="../scripts/controllers/listController.js"></script>
+    <script src="../scripts/controllers/addTaskController.js"></script>
   </head>
   
   <body>
@@ -21,18 +24,21 @@
     <div ng-app="todoListApp" class="content" role="main">
       <div ng-controller="mainController">
       <h2>Todo...</h2>
-      <div>
-        <input type="text" placeholder="search..." ng-model="searchText"/>
+      <div ng-controller="searchController">
+        <input type="text" placeholder="search..." ng-model="$parent.searchText"/>
       </div>
 
-      <div ng-repeat="task in tasks | filter:searchText">
-        <div class="card-container">
-            <input type="checkbox" ng-model="task.checked" ng-click="onUpdateTask(this)" />
-            {{ task.text }}
-            <input type="button" value="delete" ng-click="onDeleteTask(this)" />
+      <div ng-controller="listController">
+        <div ng-repeat="task in tasks | filter: $parent.searchText track by $index">
+          <div class="card-container">
+              <input type="checkbox" ng-model="task.checked" ng-click="onUpdateTask(this)" />
+              {{ task.text }}
+              <input type="button" value="delete" ng-click="onDeleteTask(this)" />
+          </div>
         </div>
       </div>
-      <div>
+      
+      <div ng-controller="addTaskController">
         <div class="card-container">
 		      <a class="circle-link" ng-click="onAddTask()" title="Add To List">
             <svg class="material-icons" width="24" height="24" viewBox="0 0 24 24">

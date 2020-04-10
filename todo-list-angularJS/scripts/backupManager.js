@@ -7,5 +7,4 @@ class BackupManager {
     restore(key) {
         return JSON.parse(localStorage.getItem(key));
     }
-
 }
