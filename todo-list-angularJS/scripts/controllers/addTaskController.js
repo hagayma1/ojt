@@ -7,6 +7,6 @@ app.controller("addTaskController", function($scope) {
 }).directive("addtask", function() {
     return {
         restrict: 'E',
-        templateUrl: './addTask.html'
+        templateUrl: '../partials/addTask.html'
     };
 });

@@ -12,6 +12,6 @@ app.controller("listController", function($scope) {
 }).directive("tasks", function() {
     return {
         restrict: 'E',
-        templateUrl: 'tasks.html'
+        templateUrl: '../partials/tasks.html'
     };
 });
