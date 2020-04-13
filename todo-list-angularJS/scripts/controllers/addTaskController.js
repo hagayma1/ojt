@@ -1,7 +1,9 @@
 app.controller("addTaskController", function($scope) {
+    $scope.tasksManager = $scope.$parent.tasksManager;
+    
     $scope.onAddTask = function() {
         let task = {text:$scope.newTask, checked:false};
-        tasksManager.add(task);
+        $scope.tasksManager.add(task);
         $scope.newTask = "";
     }
 }).directive("addtask", function() {
