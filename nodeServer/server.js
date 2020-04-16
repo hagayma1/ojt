@@ -1,7 +1,7 @@
 let express = require('express');
 let bodyParser = require('body-parser');
 let app = express();
-let tasksCore = require('./tasks-core.js');
+let tasksCore = require('./server_files/tasks-core.js');
 const TASKS_BACKUP_KEY = "tasks";
 
 app.use(express.static(__dirname + '/public'));
