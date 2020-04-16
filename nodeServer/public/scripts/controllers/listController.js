@@ -1,4 +1,4 @@
-app.controller("listController", function($scope, tasksManager) {
+app.controller("listController", ['$scope', 'tasksManager', function($scope, tasksManager) {
     $scope.tasks = tasksManager.tasks;
     
     $scope.onUpdateTask = function(event) {
@@ -14,7 +14,7 @@ app.controller("listController", function($scope, tasksManager) {
             alert(err);
         });
     }
-}).directive("tasks", function() {
+}]).directive("tasks", function() {
     return {
         restrict: 'E',
         templateUrl: '../partials/tasks.html'

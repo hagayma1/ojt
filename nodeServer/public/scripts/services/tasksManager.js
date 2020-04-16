@@ -1,11 +1,10 @@
 let app = angular.module( 'todoListApp' , []);
 
-app.service('tasksManager', function() {
-    this.init = (fetchManager, refresh) => {
-        this.fetchManager = fetchManager;
+app.service('tasksManager', ['fetchManager', function(fetchManager) {
+    this.init = (refresh) => {
         this.refresh = refresh;
         this.tasks = [];
-        this.fetchManager.restoreTasks().then(tasks => {
+        fetchManager.restoreTasks().then(tasks => {
             if(tasks != null) {
                 tasks.forEach(task => {
                     this.tasks.push(task);
@@ -17,7 +16,7 @@ app.service('tasksManager', function() {
      
     this.add = async function (task) {
         if(this.tasks.findIndex(item => item.text === task.text) === -1) {
-            return this.fetchManager.addTask(task).then(id => {
+            return fetchManager.addTask(task).then(id => {
                 task._id = id;
                 this.tasks.push(task);
                 return this.refresh;
@@ -30,7 +29,7 @@ app.service('tasksManager', function() {
     this.delete = async function (task) {
         let indexToDelete = this.tasks.findIndex(current => task.text === current.text);
         if (indexToDelete > -1) {
-            return this.fetchManager.deleteTask(task).then(() => {
+            return fetchManager.deleteTask(task).then(() => {
                 this.tasks.splice(indexToDelete, 1);
                 this.refresh();
             });
@@ -42,11 +41,11 @@ app.service('tasksManager', function() {
     this.update = async function (task) {
         let indexToUpdate = this.tasks.findIndex(current => task.text === current.text);
         if (indexToUpdate > -1) {
-            return this.fetchManager.updateTask(task).then(() => {
+            return fetchManager.updateTask(task).then(() => {
                 this.tasks[indexToUpdate] = task;
             });
         }
 
         throw "the task doesn't exist";
     } 
-});
+}]);

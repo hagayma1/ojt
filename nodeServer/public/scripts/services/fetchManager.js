@@ -1,5 +1,5 @@
-class FetchManager {
-    addTask(data) {
+app.service('fetchManager', function() {
+    this.addTask = function(data) {
         return fetch('api/tasks/add', {
             method: 'post',
             headers: {
@@ -15,7 +15,7 @@ class FetchManager {
         });
     }
 
-    deleteTask(data) {
+    this.deleteTask = function(data) {
         return fetch('api/tasks/delete', {
             method: 'post',
             headers: {
@@ -30,7 +30,7 @@ class FetchManager {
         });
     }
 
-    updateTask(data) {
+    this.updateTask = function(data) {
         return fetch('api/tasks/update', {
             method: 'post',
             headers: {
@@ -45,7 +45,7 @@ class FetchManager {
         });
     }
 
-    restoreTasks() {
+    this.restoreTasks = function() {
         return fetch('api/tasks', {
             method: 'get',
             headers: {
@@ -54,4 +54,4 @@ class FetchManager {
             }
         }).then(data => data.json());
     }
-}
+});
