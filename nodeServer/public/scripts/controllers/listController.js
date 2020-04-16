@@ -1,13 +1,18 @@
-app.controller("listController", function($scope) {
-    $scope.tasksManager = $scope.$parent.tasksManager;
-
+app.controller("listController", function($scope, tasksManager) {
+    $scope.tasks = tasksManager.tasks;
+    
     $scope.onUpdateTask = function(event) {
         event.task.checked = !event.task.checked;
-        $scope.tasksManager.update(event.task);
+        tasksManager.update(event.task).catch(err => {
+            event.task.checked = !event.task.checked;
+            alert(err);
+        });
     }
     
     $scope.onDeleteTask = function(event) {
-        $scope.tasksManager.delete(event.task);
+        tasksManager.delete(event.task).catch(err => {
+            alert(err);
+        });
     }
 }).directive("tasks", function() {
     return {

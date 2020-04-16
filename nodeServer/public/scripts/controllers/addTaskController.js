@@ -1,10 +1,12 @@
-app.controller("addTaskController", function($scope) {
-    $scope.tasksManager = $scope.$parent.tasksManager;
-    
+app.controller("addTaskController", function($scope, tasksManager) {
     $scope.onAddTask = function() {
         let task = {text:$scope.newTask, checked:false};
-        $scope.tasksManager.add(task);
-        $scope.newTask = "";
+        tasksManager.add(task).then(refresh => {
+            $scope.newTask = "";
+            refresh();
+        }).catch(err => {
+            alert(err);
+        });
     }
 }).directive("addtask", function() {
     return {
